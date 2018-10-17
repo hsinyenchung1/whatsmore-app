@@ -1,0 +1,10 @@
+.Logo .responsive {
+  background-color: #ccc;
+  width: 100%;
+  height: auto;
+}
+
+.Logo{
+    padding: 180px;
+    height: 100%;
+}

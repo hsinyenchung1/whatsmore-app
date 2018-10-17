@@ -1,10 +1,10 @@
 import React from 'react';
-import Logo from '../../assets/images/logo.svg';
+import Logowhite from '../../../assets/images/logoWhite.svg';
 import classes from './Logo.css';
 
 const logo = (props) => (
   <div className={classes.Logo}>
-    <img src={Logo} alt="MyLogo"/>
+    <img src={Logowhite} className={classes.responsive} alt="MyLogo"/>
   </div>
 );
 
