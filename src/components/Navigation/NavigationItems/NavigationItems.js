@@ -8,6 +8,7 @@ const navigationItems = () => (
     <NavigationItem link='/menu'> MENU </NavigationItem>
     <NavigationItem link='/policy'> POLICY</NavigationItem>
     <NavigationItem link='/order'>ORDER</NavigationItem>
+    <NavigationItem link='/cake'>CAKE</NavigationItem>
   </ul>
 );
 

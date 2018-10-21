@@ -1,0 +1,31 @@
+.Policy {
+  /* width: 688px;
+  height: auto;
+  background-color: #ccc; */
+  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+  
+  justify-content: center;
+  
+  width: 100%;
+  height: 200px;
+}
+
+.Policy .Content {
+  width: 688px;
+  height: auto;
+}
+
+.Policy .Content .Title{
+  text-align: center;
+}
+
+.Policy .Content .Body{
+  text-align: left;
+}
+
+.Section {
+  padding: 10px;
+}
