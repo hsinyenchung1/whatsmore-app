@@ -1,10 +1,23 @@
 .Footer {
-  height: 88px;
-  position: fixed;
    left: 0;
    bottom: 0;
    width: 100%;
    background-color: white;
    color: black;
    text-align: center;
+   padding-bottom: 50px;
 }
+
+.Description div {
+  font-size: 13pt;
+  line-height: 16pt;
+  padding: 5px;
+}
+.SocialMedia {
+  padding-top: 20px;
+  font-size: 18px;
+}
+.SocialMedia a { color: black;}      /* unvisited link */
+.SocialMedia a:visited {color: black;}  /* visited link */
+.SocialMedia a:hover {color: black;}  /* mouse over link */
+.SocialMedia a:active {color: black;}  /* selected link */

@@ -1,18 +1,9 @@
-.DrawerToggle {
-  width: 40px;
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px 0;
-  box-sizing: border-box;
-}
-
-.DrawerToggle div {
-  width: 80%;
-  height: 3px;
-  background-color: black;
+.DrawerToggle i{
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin: 20px;
+  margin-top: -11px;
 }
 
 @media (min-width: 500px){
