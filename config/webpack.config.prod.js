@@ -167,52 +167,34 @@ module.exports = {
           // in the main CSS file.
           {
             test: /\.css$/,
-            loader: ExtractTextPlugin.extract(
-              Object.assign(
-                {
-                  fallback: {
-                    loader: require.resolve('style-loader'),
-                    options: {
-                      hmr: false,
-                    },
-                  },
-                  use: [
-                    {
-                      loader: require.resolve('css-loader'),
-                      options: {
-                        importLoaders: 1,
-                        minimize: true,
-                        sourceMap: shouldUseSourceMap,
-                        modules: true,
-                        localIdentName: '[name]__[local]__[hash:base64:5]'
-                      },
-                    },
-                    {
-                      loader: require.resolve('postcss-loader'),
-                      options: {
-                        // Necessary for external CSS imports to work
-                        // https://github.com/facebookincubator/create-react-app/issues/2677
-                        ident: 'postcss',
-                        plugins: () => [
-                          require('postcss-flexbugs-fixes'),
-                          autoprefixer({
-                            browsers: [
-                              '>1%',
-                              'last 4 versions',
-                              'Firefox ESR',
-                              'not ie < 9', // React doesn't support IE8 anyway
-                            ],
-                            flexbox: 'no-2009',
-                          }),
-                        ],
-                      },
-                    },
-                  ],
-                },
-                extractTextPluginOptions
-              )
-            ),
+            use: [
+              'style-loader',
+              {
+                loader: 'css-loader',
+                query: {
+                  modules: true,
+                  localIdentName: '[name]__[local]___[hash:base64:5]'
+                }
+              },
+              'postcss-loader'
+            ]
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+          },
+          {
+            test: /\.scss$/,
+            use: [
+              'style-loader',
+              {
+                loader: 'css-loader',
+                query: {
+                  modules: true,
+                  sourceMap: true,
+                  importLoaders: 2,
+                  localIdentName: '[name]__[local]___[hash:base64:5]'
+                }
+              },
+              'sass-loader'
+            ]
           },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
@@ -331,6 +313,7 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new ExtractTextPlugin({ filename: 'styles.css', allChunks: true }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

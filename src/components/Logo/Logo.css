@@ -6,12 +6,20 @@
   border-radius: 5px;
 }
 
-.Logo img{
-  height: 100%;
-}
-
 .Logo .responsive {
   background-color: #ccc;
   width: 100%;
   height: auto;
+}
+
+.Small{
+  width: 100px;
+}
+
+.Medium {
+  width: 200px;
+}
+
+.Large {
+  width: 300px;
 }

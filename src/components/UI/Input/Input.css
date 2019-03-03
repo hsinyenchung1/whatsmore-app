@@ -1,25 +1,57 @@
 .Input {
   padding: 10px;
+  position: relative;
 }
 
 .Label {
-  font-weight: bold;
   display: block;
-  margin-bottom: 8px;
+  position: absolute;
+  color: #686868;
+  font-weight: 700;
+  text-align: center;
+  background-color: #fff;
+  padding: 0px 5px;
+  font-size: 10px;
+  top: -1px;
+  left: 25px;
+}
+
+.Error {
+  color: red;
 }
 
 .InputElement {
   outline: none;
-  border: 1px solid #ccc;
   background-color: white;
+  border: 0px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
   font: inherit;
-  padding: 6px 10px;
   display: block;
   width: 100%;
+  /* margin: auto; */
   box-sizing: border-box;
+  line-height: 35px;
+  padding-left: 10px;
 }
 
 .InputElement:focus {
   outline: none;
-  background-color: #ccc;
+}
+
+
+input[type="time"]
+{
+    display:block;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    min-height: 1.2em;
+}
+
+input[type="date"]
+{
+    display:block;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    min-height: 1.2em;
 }

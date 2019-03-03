@@ -1,0 +1,34 @@
+.Succes {
+  color: green;
+}
+
+.Danger {
+  color: red;
+}
+
+
+.Button{
+  color: black;
+  font-weight: 700;
+  font-size: 14px;
+  width: 100%;
+  padding: 5px 15px;
+  background-color: #ccc;
+  border: 0px;
+  border-radius: 6px;
+}
+
+.Button:hover{
+  background-color: #dddddd;
+}
+
+.Button:focus{
+  outline: none;
+}
+
+.Disable {
+  cursor: no-drop;
+  background-color: #dddddd;
+  color: white;
+
+}

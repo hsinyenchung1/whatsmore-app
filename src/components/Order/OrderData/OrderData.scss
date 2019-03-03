@@ -1,0 +1,97 @@
+form {
+    padding-top: 20px;
+    display: grid;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+    grid-row-gap: 10px;
+    grid-template-areas: 
+        "name phone"
+        "email wechat" 
+        "message message" 
+        "pickup_date pickup_time"
+        "buttonSubmit buttonSubmit";
+    .name{ 
+        grid-area: name; 
+    }
+    .email{ 
+        grid-area: email; 
+    }
+    .phone{ 
+        grid-area: phone; 
+    }
+    .wechat{ 
+        grid-area: wechat; 
+    }
+    .pickup_date{ 
+        grid-area: pickup_date; 
+    }
+    .pickup_time{ 
+        grid-area: pickup_time;
+    }
+    .message{ 
+        grid-area: message; 
+    }
+    .buttonSubmit{
+        grid-area: buttonSubmit;
+        width: 200px;
+        margin: auto;
+    }   
+}
+
+@media screen and (max-width: 600px){
+    form {
+        grid-template-areas: 
+        "name"
+        "phone"
+        "email" 
+        "wechat" 
+        "message"
+        "pickup_time"
+        "pickup_date"
+        "buttonSubmit";
+    }
+}
+
+.DisplayConfirmItem {
+  padding: 10px 20px;
+  clear: both;
+}
+
+.DisplayPeroerty {
+    float: left;
+}
+
+.DisplayValue {
+    float: right;
+}
+
+.Confirmation{
+    max-width: 400px;
+    margin: auto;
+    padding-bottom: 30px;
+}
+
+.HR {
+    clear: both;
+    border-bottom: 1px black solid;
+    width: 100%;
+    margin: auto;
+    padding-bottom: 10px;
+}
+
+.ConfirmButton{
+    width: 100px;
+    padding: 5px;
+}
+
+.ConfirmButtonGroup {
+    display: flex;
+    justify-content: center;
+}
+
+.DisableButton {
+    background-color: grey;
+}

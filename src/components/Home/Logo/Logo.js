@@ -1,6 +1,6 @@
 import React from 'react';
 import Logowhite from '../../../assets/images/logoWhite.svg';
-import classes from './Logo.css';
+import classes from './Logo.scss';
 
 const logo = (props) => (
   <div className={classes.Logo}>

@@ -1,19 +1,19 @@
 import React from 'react';
 import classes from './Footer.css';
-import { Link } from 'react-router-dom';
 
 const Footer = (props) => (
   <div className={classes.Footer}>
     <div className={classes.Description}>
-        <div>whaT's More</div>
-        <div>UNIQUE DESIGN CAKE STUDIO</div>
+        {/* <div>whaT's More</div> */}
+        <div>UNIQUE DESIGNED CAKE STUDIO</div>
+        <div>whatsmorecake@gmail.com</div>
     </div>
-
-
-
     <div className={classes.SocialMedia}>
-      <a href="https://www.instagram.com/whatsmorecake/" target="_blank" rel="noopener"><i className="fab fa-instagram fa-lg"></i></a>
+      <a href="https://www.instagram.com/whatsmorecake/" 
+        target="_blank" >
+        <i className={["fab", "fa-instagram", classes['iconSzie']].join(' ')}></i></a>
     </div>
+    <div>&copy; 2019 whatsmorecake </div>
   </div>
 );
 

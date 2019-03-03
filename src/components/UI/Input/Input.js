@@ -10,7 +10,8 @@ const input = (props) => {
         className={classes.InputElement}
         {...props.elementConfig}
         value={props.value}
-        onChange={props.changed} />;
+        onChange={props.changed}
+         />;
       break;
     case ('textarea'):
       inputElement = <textarea
@@ -38,8 +39,8 @@ const input = (props) => {
   }
 
   return (
-    <div className={classes.Input}>
-      <label className={classes.Label}> {props.label} </label>
+    <div className={[classes.Input, classes[props.inputType], classes[props.elementConfig.type]].join('  ')}>
+      <label className={[classes.Label, classes[props.inputType], classes[props.elementConfig.type]].join('  ')}> {props.label} </label>
       {inputElement}
     </div>
   )

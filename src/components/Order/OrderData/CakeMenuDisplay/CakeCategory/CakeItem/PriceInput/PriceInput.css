@@ -1,3 +1,21 @@
 .Input {
     width: 40px;
+    border: 0px;
+    border-bottom: 1px black solid;
+}
+
+.Input:focus{
+    outline: none;
+}
+
+.Container{
+    padding: 20px;
+}
+
+.PaddingNone {
+    padding-bottom: 15px;
+}
+
+.PaddingLeft{
+    padding-right: 10px;
 }

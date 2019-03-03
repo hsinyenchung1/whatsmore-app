@@ -1,0 +1,35 @@
+.Spinner {
+    width: 100%;
+    position: relative;
+}
+  
+.Covered {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+    z-index: 100;
+}
+
+.SpinnerIcon {
+    right: 50%;
+    top: 50%;
+    margin-right: -40px;
+    position: fixed;
+    font-size: 80px;
+    z-index: 500;
+    color: black;
+    animation-duration: 2s;
+    animation-name: spin;
+    animation-iteration-count: infinite;
+    // animation-direction: alternate;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(359deg);
+    }
+  }

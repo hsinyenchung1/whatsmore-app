@@ -21,3 +21,7 @@
 .SocialMedia a:visited {color: black;}  /* visited link */
 .SocialMedia a:hover {color: black;}  /* mouse over link */
 .SocialMedia a:active {color: black;}  /* selected link */
+
+.iconSzie {
+  font-size: 30px;
+}

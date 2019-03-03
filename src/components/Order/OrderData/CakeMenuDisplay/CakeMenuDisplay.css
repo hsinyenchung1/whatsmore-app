@@ -1,0 +1,33 @@
+
+.MenuDisplay{
+    display: grid;
+    grid-template-areas: 
+    "crepeCakes chiffonCakes"
+    "crepeCakes boxedCakes";
+    padding-top: 30px;
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
+}
+
+.CREPE_CAKES {
+    grid-area: crepeCakes;
+}
+
+.CHIFFON_CAKES {
+    grid-area: chiffonCakes;
+}
+
+.BOXED_CAKES {
+    grid-area: boxedCakes;
+}
+
+@media screen and (max-width: 600px) {
+
+    .MenuDisplay{
+        grid-template-areas: 
+        "crepeCakes"
+        "chiffonCakes"
+        "boxedCakes";
+    }
+
+}
