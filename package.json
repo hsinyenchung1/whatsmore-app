@@ -17,6 +17,7 @@
     "css-loader": "0.28.7",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
+    "env-cmd": "^8.0.2",
     "eslint": "4.10.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-loader": "1.9.0",
@@ -53,6 +54,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "build:staging": "env-cmd .env.staging npm run build",
+    "build:prod": "env-cmd .env.prod node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
