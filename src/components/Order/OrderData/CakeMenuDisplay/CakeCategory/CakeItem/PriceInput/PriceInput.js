@@ -19,7 +19,7 @@ function PriceInput(props) {
             {(props.category === 'boxed_cakes') ? (
                 <span>
                     <span className={classes['PaddingLeft']}>
-                        ${'(' + props.price + ')'}
+                        ${'[' + props.price + ']'}
                     </span>
                     <input
                         className={classes.Input}
@@ -28,8 +28,8 @@ function PriceInput(props) {
                         onChange={props.updateCakeAmountChangedHandler} />
                 </span>
             ) : (
-                    <div>
-                        ${'(' + props.price + ')'}
+                    <div className={classes['Price']}>
+                        ${'[' + props.price + ']'}
                         <div>
                             <input
                                 className={classes.Input}

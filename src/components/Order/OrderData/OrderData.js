@@ -129,7 +129,7 @@ class OrderData extends Component {
             label: 'Pickup time'
           },
           isValid: true,
-          value: "11:00"
+          value: "15:00"
         },
         // paymentMethod: {
         //   elementType: 'select',
