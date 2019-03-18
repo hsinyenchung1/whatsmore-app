@@ -129,7 +129,7 @@ class OrderData extends Component {
             label: 'Pickup time'
           },
           isValid: true,
-          value: "11:00"
+          value: "15:00"
         },
         // paymentMethod: {
         //   elementType: 'select',
@@ -534,8 +534,10 @@ class OrderData extends Component {
             </Button>
 
             <Modal show={this.state.show} onHide={this.handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Confirm Your Orders</Modal.Title>
+              <Modal.Header>
+                  <Modal.Title bsClass={classes['ModalTitle']}>
+                    Confirm Your Orders
+                  </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <div className={classes['Confirmation']}>

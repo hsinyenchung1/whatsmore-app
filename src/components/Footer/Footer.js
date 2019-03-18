@@ -10,7 +10,8 @@ const Footer = (props) => (
     </div>
     <div className={classes.SocialMedia}>
       <a href="https://www.instagram.com/whatsmorecake/" 
-        target="_blank" >
+        target="_blank" 
+        rel="noopener noreferrer">
         <i className={["fab", "fa-instagram", classes['iconSzie']].join(' ')}></i></a>
     </div>
     <div>&copy; 2019 whatsmorecake </div>
