@@ -148,7 +148,7 @@ class OrderData extends Component {
           elementConfig: {
             placeholder: '',
             label: 'Message',
-            required: true,
+            required: false,
           },
           isValid: true,
           value: ''
