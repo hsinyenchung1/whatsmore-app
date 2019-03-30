@@ -154,11 +154,13 @@ class OrderData extends Component {
           value: ''
         }
       },
+      for_birthday: false,
       total_amount: 0,
       cake: [],
       orderCakeForm: {},
       cake_index_obj: {},
-      current_cake_limitation: {}
+      current_cake_limitation: {},
+      order_detail: {}
     }
   }
 
@@ -221,7 +223,7 @@ class OrderData extends Component {
     const updateFormElement = {
       ...updateOrderForm[inputIdentifier]
     }
-
+    
     if (inputIdentifier === "pickup_date") {
       axios.get(process.env.REACT_APP_DOMAIN + "/api/CakeLimitationDates/current_cake_limitation/?date=" + event.target.value)
         .then((response) => {
@@ -239,9 +241,14 @@ class OrderData extends Component {
     }
 
     updateFormElement.value = event.target.value;
-    updateOrderForm[inputIdentifier] = updateFormElement;
+    updateOrderForm[inputIdentifier] = updateFormElement;    
     this.setState({ orderForm: updateOrderForm });
+  }
 
+  checkboxHandler = (event, inputIdentifier) => {
+    let for_birthday = this.state[inputIdentifier];
+    for_birthday = event.target.checked;
+    this.setState({for_birthday: for_birthday});
   }
 
   orderHandler = (event, history) => {
@@ -269,12 +276,13 @@ class OrderData extends Component {
     formData["order_time"] = Date.now();
     formData["total_amount"] = this.state.total_amount;
     formData["cake"] = this.state.cake;
-
+    formData["order_detail"] = JSON.stringify(this.state.order_detail);
+    formData["for_birthday"] = this.state.for_birthday;
 
     const order = {
       orderData: formData
     }
-
+    
     axios.post(process.env.REACT_APP_DOMAIN + '/api/Orders/create_order', order.orderData)
       .then(response => {
         console.log(response);
@@ -292,7 +300,7 @@ class OrderData extends Component {
     return true;
   }
 
-  updateCakeAmountChangedHandler = (event, testcake) => {
+  updateCakeAmountChangedHandler = (event) => {
     if (event.target.value < 0 || event.target.value > 9) {
       event.preventDefault();
       event.target.value = 9;
@@ -313,18 +321,27 @@ class OrderData extends Component {
 
     let total = 0;
     let cake = [];
+    let order_detail = [];
     // get total amount and cakes
     for (let key in updateOrderCakeForm) {
       if (updateOrderCakeForm[key].orderAmount > 0) {
         total = total + (updateOrderCakeForm[key].price * updateOrderCakeForm[key].orderAmount);
-        cake.push(key);
+        cake.push(key);        
+        order_detail.push({
+          cake_oid: key,
+          price: updateOrderCakeForm[key].price,
+          order_amount: updateOrderCakeForm[key].orderAmount,
+          name: updateOrderCakeForm[key].name,
+          size: updateOrderCakeForm[key].size
+        })
       }
     }
 
     this.setState({
       orderCakeForm: updateOrderCakeForm,
       total_amount: total,
-      cake: cake
+      cake: cake,
+      order_detail: order_detail
     });
   }
 
@@ -436,7 +453,7 @@ class OrderData extends Component {
       for (let key in confirmationModalBodyContentObject) {
 
         // pass cake property and pass oid in cake
-        if (key !== 'total_amount' && key !== 'cake' && !confirmationModalBodyContentObject['cake'].includes(key)) {
+        if (key !== 'total_amount' && key !== 'cake' && key !== 'order_detail' && !confirmationModalBodyContentObject['cake'].includes(key)) {
           confirmation.push(
             <div key={key} className={classes['DisplayConfirmItem']}>
               <div className={classes['DisplayPeroerty']}>
@@ -449,6 +466,17 @@ class OrderData extends Component {
           )
         }
       }
+
+      confirmation.push(
+        <div key="Birthday" className={classes['DisplayConfirmItem']}>
+            <div className={classes['DisplayPeroerty']}>
+              For Birthday
+            </div>
+            <div className={classes['DisplayValue']}>
+              {this.state.for_birthday ? "Yes" : "No"}
+            </div>
+        </div>
+      )
 
       // display cake name and ammount
       const cakes = confirmationModalBodyContentObject['cake'];
@@ -469,12 +497,12 @@ class OrderData extends Component {
       }
 
       confirmation.push(
-        <div className={classes['HR']}></div>
+        <div key={'hr'} className={classes['HR']}></div>
       );
 
       for (let cake in displayCakes) {
         confirmation.push(
-          <div className={classes['DisplayConfirmItem']}>
+          <div key={cake} className={classes['DisplayConfirmItem']}>
             <div className={classes['DisplayPeroerty']}>
               {toUpperCaseFirstWord(displayCakes[cake].name)} (${displayCakes[cake].price}) * {displayCakes[cake].orderAmount}
             </div>
@@ -482,12 +510,11 @@ class OrderData extends Component {
               ${displayCakes[cake].totalAmount}
             </div>
           </div>
-
         )
       }
 
       confirmation.push(
-        <div className={classes['HR']}></div>
+        <div key={'hr1'} className={classes['HR']}></div>
       );
 
 
@@ -529,8 +556,12 @@ class OrderData extends Component {
                   changed={(event) => this.inputChangedHandler(event, formElement.id)} />
               </div>
             ))}
+            <div className={classes['forBirthday']} onChange={ (event) => this.checkboxHandler(event, "for_birthday")}>
+              <label>For Birthday</label>
+              <input type="checkbox" ></input> 
+            </div>
             <Button className={classes['buttonSubmit']} onClick={this.handleShow}>
-              Submit
+              Next
             </Button>
 
             <Modal show={this.state.show} onHide={this.handleClose}>
