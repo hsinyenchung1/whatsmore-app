@@ -12,7 +12,7 @@ form {
         "email wechat" 
         "message message" 
         "pickup_date pickup_time"
-        "buttonSubmit buttonSubmit";
+        "forBirthday buttonSubmit";
     .name{ 
         grid-area: name; 
     }
@@ -34,12 +34,16 @@ form {
     .message{ 
         grid-area: message; 
     }
+    .forBirthday{
+        grid-area: forBirthday;
+    }
     .buttonSubmit{
         grid-area: buttonSubmit;
         width: 200px;
         margin: auto;
-    }   
+    }
 }
+
 
 @media screen and (max-width: 600px){
     form {
@@ -51,7 +55,24 @@ form {
         "message"
         "pickup_time"
         "pickup_date"
+        "forBirthday"
         "buttonSubmit";
+        .forBirthday{
+            justify-content: center;
+        }
+    }
+}
+
+.forBirthday {
+    display: flex;
+    justify-content: center;
+    color: #686868;
+    label{
+        padding-right: 20px;
+    }
+    input{
+        position: relative;
+        top: 3px;
     }
 }
 

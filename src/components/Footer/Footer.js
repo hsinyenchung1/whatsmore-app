@@ -5,7 +5,7 @@ const Footer = (props) => (
   <div className={classes.Footer}>
     <div className={classes.Description}>
         {/* <div>whaT's More</div> */}
-        <div>UNIQUE DESIGNED CAKE STUDIO</div>
+        <div>Cake Designing Studio</div>
         <div>whatsmorecake@gmail.com</div>
     </div>
     <div className={classes.SocialMedia}>
