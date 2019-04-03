@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Home.css';
-import specialCake from './chrxmas-cake.jpg';
+import specialCake from './main_cake.jpg';
 
 const Home = (props) => (
   <div className={classes.Home}>
