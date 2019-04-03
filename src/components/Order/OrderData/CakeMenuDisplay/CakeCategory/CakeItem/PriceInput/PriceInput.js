@@ -19,7 +19,7 @@ function PriceInput(props) {
             {(props.category === 'boxed_cakes') ? (
                 <span>
                     <span className={classes['PaddingLeft']}>
-                        ${'[' + props.price + ']'}
+                        {'[$' + props.price + ']'}
                     </span>
                     <input
                         className={classes.Input}
@@ -29,7 +29,7 @@ function PriceInput(props) {
                 </span>
             ) : (
                     <div className={classes['Price']}>
-                        ${'[' + props.price + ']'}
+                        {'[$' + props.price + ']'}
                         <div>
                             <input
                                 className={classes.Input}
