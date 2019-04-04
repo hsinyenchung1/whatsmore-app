@@ -4,10 +4,10 @@ import NavigationItem from './NavigationItem/NavigationItem';
 
 const navigationItems = () => (
   <ul className={classes.NavigationItems}>
-    <NavigationItem link='/home'>HOME</NavigationItem>
-    {/* <NavigationItem link='/menu'> MENU </NavigationItem> */}
+    <NavigationItem link='/home'>Home</NavigationItem>
     {/* <NavigationItem link='/policy'> POLICY</NavigationItem> */}
-    <NavigationItem link='/order'>ORDER</NavigationItem>
+    <NavigationItem link='/order'>Order</NavigationItem>
+    <NavigationItem link='https://www.instagram.com/whatsmorecake/' isStatic='true'>Gallery</NavigationItem>
     {/* <NavigationItem link='/cake'>CAKE</NavigationItem> */}
   </ul>
 );
