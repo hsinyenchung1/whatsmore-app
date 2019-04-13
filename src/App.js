@@ -14,7 +14,15 @@ class App extends Component {
   }
 
   toggleSpinner() {
-    this.setState({enable_spinner: !this.state.enable_spinner});
+    this.setState({ enable_spinner: !this.state.enable_spinner });
+  }
+
+  redirect = (path) => {
+    let mapping = {
+      "/admin_dashboard": process.env.REACT_APP_DOMAIN + "/admin_dashboard"
+    }
+    window.location.href = mapping[path];
+    return null;
   }
 
   render() {
@@ -28,6 +36,8 @@ class App extends Component {
                 <Route path="/home" component={Home} />
                 <Route path="/order" render={() => <Order toggleSpinner={() => this.toggleSpinner()} />} />
                 <Route path="/confirm" component={Confirm} />} />
+
+                <Route path="/admin_dashboard" render={() => this.redirect("/admin_dashboard")} />
               </Switch>
             </Layout>
           </BrowserRouter >
