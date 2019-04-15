@@ -113,7 +113,7 @@ class OrderData extends Component {
             label: 'Pickup Date',
             min: minOrderDate(),
             max: maxOrderDate(),
-            required: true,
+            required: true
           },
           isValid: true,
           value: minOrderDate()
@@ -176,7 +176,7 @@ class OrderData extends Component {
         console.log('error', error);
       })
 
-    axios.get(process.env.REACT_APP_DOMAIN  + "/api/Cakes")
+    axios.get(process.env.REACT_APP_DOMAIN + "/api/Cakes")
       .then((response) => {
 
         const cake_index_obj = {};
@@ -223,7 +223,7 @@ class OrderData extends Component {
     const updateFormElement = {
       ...updateOrderForm[inputIdentifier]
     }
-    
+
     if (inputIdentifier === "pickup_date") {
       axios.get(process.env.REACT_APP_DOMAIN + "/api/CakeLimitationDates/current_cake_limitation/?date=" + event.target.value)
         .then((response) => {
@@ -241,18 +241,18 @@ class OrderData extends Component {
     }
 
     updateFormElement.value = event.target.value;
-    updateOrderForm[inputIdentifier] = updateFormElement;    
+    updateOrderForm[inputIdentifier] = updateFormElement;
     this.setState({ orderForm: updateOrderForm });
   }
 
   checkboxHandler = (event, inputIdentifier) => {
     let for_birthday = this.state[inputIdentifier];
     for_birthday = event.target.checked;
-    this.setState({for_birthday: for_birthday});
+    this.setState({ for_birthday: for_birthday });
   }
 
   orderHandler = (event, history) => {
-    
+
     event.preventDefault();
     if (this.state.total_amount === 0) {
       return true;
@@ -282,7 +282,7 @@ class OrderData extends Component {
     const order = {
       orderData: formData
     }
-    
+
     axios.post(process.env.REACT_APP_DOMAIN + '/api/Orders/create_order', order.orderData)
       .then(response => {
         console.log(response);
@@ -326,7 +326,7 @@ class OrderData extends Component {
     for (let key in updateOrderCakeForm) {
       if (updateOrderCakeForm[key].orderAmount > 0) {
         total = total + (updateOrderCakeForm[key].price * updateOrderCakeForm[key].orderAmount);
-        cake.push(key);        
+        cake.push(key);
         order_detail.push({
           cake_oid: key,
           price: updateOrderCakeForm[key].price,
@@ -382,6 +382,10 @@ class OrderData extends Component {
     this.setState({ show: false });
   }
 
+  handleCloseErrorModal = () => {
+    this.setState({ showErrorModal: false });
+  }
+
   handleShow(event) {
     // show spinner 
     this.props.toggleSpinner();
@@ -394,11 +398,52 @@ class OrderData extends Component {
       ...this.state.orderForm
     }
 
+    if(this.state.total_amount === 0){
+      validationError = true;
+      this.setState({
+        errorTitle: "Please select a cake",
+        showErrorModal: true,
+        errorMessage: "Please select a cake from above."
+      });
+    }
+
     // check if required field is empty
     for (let formElementIdentifier in updateOrderForm) {
       if (updateOrderForm[formElementIdentifier].value === '' && updateOrderForm[formElementIdentifier].elementConfig.required) {
         updateOrderForm[formElementIdentifier].isValid = false;
         validationError = true;
+        this.setState({
+          errorTitle: "User information is required",
+          showErrorModal: true,
+          errorMessage: toUpperCaseFirstWord(formElementIdentifier) + " can not be empty."
+        });
+      }
+      // check if order is less than 5 date
+      if (formElementIdentifier === "pickup_date") {
+        let submitedDate = new Date(updateOrderForm[formElementIdentifier].value);
+        let minDate = new Date(minOrderDate());
+        let maxDate = new Date(maxOrderDate());
+        if (submitedDate < minDate || maxDate < submitedDate) {
+          updateOrderForm[formElementIdentifier].isValid = false;
+          validationError = true;
+          this.setState({
+            errorTitle: "Date is not available.",
+            showErrorModal: true,
+            errorMessage: "We only accpet date after " + minOrderDate() + " and before " + maxOrderDate() + " ."
+          });
+        }
+        if (submitedDate.getDay() === 6) {
+          updateOrderForm[formElementIdentifier].isValid = false;
+          validationError = true;
+          let date = submitedDate.getDate();
+          let month = submitedDate.getMonth() + 1;
+          let year = submitedDate.getFullYear();
+          this.setState({
+            errorTitle: "Date is not available.",
+            showErrorModal: true,
+            errorMessage: "Sorry, We close on Sunday. " + year + "-" + month + "-" + date
+          });
+        }
       }
     }
 
@@ -469,12 +514,12 @@ class OrderData extends Component {
 
       confirmation.push(
         <div key="Birthday" className={classes['DisplayConfirmItem']}>
-            <div className={classes['DisplayPeroerty']}>
-              For Birthday
+          <div className={classes['DisplayPeroerty']}>
+            For Birthday
             </div>
-            <div className={classes['DisplayValue']}>
-              {this.state.for_birthday ? "Yes" : "No"}
-            </div>
+          <div className={classes['DisplayValue']}>
+            {this.state.for_birthday ? "Yes" : "No"}
+          </div>
         </div>
       )
 
@@ -556,9 +601,9 @@ class OrderData extends Component {
                   changed={(event) => this.inputChangedHandler(event, formElement.id)} />
               </div>
             ))}
-            <div className={classes['forBirthday']} onChange={ (event) => this.checkboxHandler(event, "for_birthday")}>
+            <div className={classes['forBirthday']} onChange={(event) => this.checkboxHandler(event, "for_birthday")}>
               <label>For Birthday</label>
-              <input type="checkbox" ></input> 
+              <input type="checkbox" ></input>
             </div>
             <Button className={classes['buttonSubmit']} onClick={this.handleShow}>
               Next
@@ -566,8 +611,8 @@ class OrderData extends Component {
 
             <Modal show={this.state.show} onHide={this.handleClose}>
               <Modal.Header>
-                  <Modal.Title bsClass={classes['ModalTitle']}>
-                    Confirm Your Orders
+                <Modal.Title bsClass={classes['ModalTitle']}>
+                  Confirm Your Orders
                   </Modal.Title>
               </Modal.Header>
               <Modal.Body>
@@ -580,15 +625,29 @@ class OrderData extends Component {
                   <div className={classes['ConfirmButton']}>
                     <UIButton clicked={this.handleClose} > Cancel</UIButton>
                   </div>
-              
+
                   <div className={classes['ConfirmButton']}>
                     <UIButton btnType={this.state.total_amount === 0 ? "Disable" : ""} clicked={this.orderHandler} to='/confirm'> Confirm</UIButton>
                   </div>
                 </div>
-                 
+
               </Modal.Footer>
             </Modal>
           </form>
+
+          <Modal show={this.state.showErrorModal} onHide={this.handleCloseErrorModal}>
+            <Modal.Header>
+              <Modal.Title bsClass={classes['ModalTitle']}>
+               {this.state.errorTitle}
+                  </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {this.state.errorMessage}
+            </Modal.Body>
+            <Modal.Footer>
+              <UIButton clicked={this.handleCloseErrorModal} > Cancel</UIButton>
+            </Modal.Footer>
+          </Modal>
         </Spinner>
       </div>
     );
