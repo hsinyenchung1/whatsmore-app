@@ -67,7 +67,8 @@ class OrderData extends Component {
             type: 'text',
             placeholder: '',
             label: 'Name',
-            required: true
+            required: true,
+            tabIndex: "1"
           },
           isValid: true,
           value: ''
@@ -79,6 +80,7 @@ class OrderData extends Component {
             placeholder: '',
             label: 'Email',
             required: true,
+            tabIndex: "3"
           },
           isValid: true,
           value: ''
@@ -90,6 +92,7 @@ class OrderData extends Component {
             placeholder: '',
             label: 'Phone',
             required: true,
+            tabIndex: "2"
           },
           isValid: true,
           value: ''
@@ -101,6 +104,7 @@ class OrderData extends Component {
             placeholder: '',
             label: 'Wechat',
             required: false,
+            tabIndex: "4"
           },
           isValid: true,
           value: ''
@@ -113,7 +117,8 @@ class OrderData extends Component {
             label: 'Pickup Date',
             min: minOrderDate(),
             max: maxOrderDate(),
-            required: true
+            required: true,
+            tabIndex: "6"
           },
           isValid: true,
           value: minOrderDate()
@@ -126,7 +131,8 @@ class OrderData extends Component {
             max: "20:00",
             required: true,
             placeholder: '',
-            label: 'Pickup time'
+            label: 'Pickup time',
+            tabIndex: "7"
           },
           isValid: true,
           value: "15:00"
@@ -149,6 +155,7 @@ class OrderData extends Component {
             placeholder: '',
             label: 'Message',
             required: false,
+            tabIndex: "5"
           },
           isValid: true,
           value: ''
