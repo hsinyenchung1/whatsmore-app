@@ -594,6 +594,7 @@ class OrderData extends Component {
                 cake_index_obj={this.state.cake_index_obj}
                 updateCakeAmountChangedHandler={this.updateCakeAmountChangedHandler} />
           )}
+          <div className={classes["DesginCake"]}>Please contact us if you would like to order a designer cake.</div>
           <form className={classes['Form']} onSubmit={this.orderHandler} formNoValidate>
             {formElementSArray.map((formElement) => (
               <div className={classes[formElement.id]} id={formElement.id} key={formElement.id}>

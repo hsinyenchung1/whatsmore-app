@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Order from './components/Order/Order';
 import Confirm from './components/Confirm/Confirm';
+import Desgin from './components/Desgin/Desgin';
 import { Switch, Route } from 'react-router-dom';
 import Spinner from './components/UI/Spinner/Spinner';
 
@@ -36,6 +37,7 @@ class App extends Component {
                 <Route path="/home" component={Home} />
                 <Route path="/order" render={() => <Order toggleSpinner={() => this.toggleSpinner()} />} />
                 <Route path="/confirm" component={Confirm} />} />
+                <Route path="/Desgin" component={Desgin} />} />
 
                 <Route path="/admin_dashboard" render={() => this.redirect("/admin_dashboard")} />
               </Switch>

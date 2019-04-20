@@ -1,0 +1,44 @@
+.Desgin {
+    margin: auto;
+    text-align: center;
+    display: grid;
+    grid-row-gap: 30px;
+    grid-template-areas: 
+    "flavoursOptions"
+    "priceOptions"
+    "description";
+    max-width: 450px;
+    color: #222222b5;
+}
+.MainTitle {
+    font-size: 20px;
+    grid-area: mainTitle;
+}
+
+.FlavoursOptions {
+    grid-area: flavoursOptions;
+}
+
+.PriceOptions {
+    grid-area: priceOptions;
+    font-size: 18px;
+}
+
+.Description{
+    grid-area: description;
+}
+
+.Title{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.item {
+    font-size: 18px;
+    padding: 5px;
+}
+
+.Wrapper {
+    
+}
