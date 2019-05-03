@@ -8,7 +8,8 @@ class CakeCategory extends Component {
   state = {
     'chiffon_cakes': ['4"', '5"', '6"'],
     'crepe_cakes': ['half 6"', '6"', '8"'],
-    'boxed_cakes': ['One Size']
+    'boxed_cakes': ['One Size'],
+    'mix_match': ['6"', '8"' ]
   }
 
   formatTitle = (category) => {

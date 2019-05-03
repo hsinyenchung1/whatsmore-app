@@ -3,7 +3,7 @@
     display: grid;
     grid-template-areas: 
     "crepeCakes chiffonCakes"
-    "crepeCakes boxedCakes";
+    "mixMatch boxedCakes";
     padding-top: 30px;
     grid-column-gap: 25px;
     grid-row-gap: 25px;
@@ -21,11 +21,16 @@
     grid-area: boxedCakes;
 }
 
+.MIX_MATCH {
+    grid-area: mixMatch;
+}
+
 @media screen and (max-width: 600px) {
 
     .MenuDisplay{
         grid-template-areas: 
         "crepeCakes"
+        "mixMatch"
         "chiffonCakes"
         "boxedCakes";
     }
