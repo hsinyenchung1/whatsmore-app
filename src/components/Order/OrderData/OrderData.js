@@ -589,7 +589,7 @@ class OrderData extends Component {
         <Spinner>
           {(
             this.state.current_cake_limitation.date_amount_limit < 200 ?
-              <h1>We are fully booked. Pleace select another day</h1> :
+              <h1>We are fully booked. Pleace select another day.</h1> :
               <CakeMenuDisplay
                 cake_index_obj={this.state.cake_index_obj}
                 updateCakeAmountChangedHandler={this.updateCakeAmountChangedHandler} />
