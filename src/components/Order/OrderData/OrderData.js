@@ -7,6 +7,7 @@ import Spinner from '../../UI/Spinner/Spinner';
 import classes from './OrderData.scss';
 import Modal from 'react-bootstrap/lib/Modal'
 import Button from 'react-bootstrap/lib/Button'
+import Validation from '../../../helper/validation'
 
 var minOrderDate = function () {
   var formattedNumber = function (number) {
@@ -425,8 +426,76 @@ class OrderData extends Component {
           errorMessage: toUpperCaseFirstWord(formElementIdentifier) + " can not be empty."
         });
       }
+
+      // email validation
+      if (formElementIdentifier === "email") {
+        if (!Validation.email(updateOrderForm[formElementIdentifier].value)){
+          updateOrderForm[formElementIdentifier].isValid = false;
+          validationError = true;
+          this.setState({
+            errorTitle: "Email is invalid",
+            showErrorModal: true,
+            errorMessage: "Please enter your email address for us to contact you."
+          });
+        }
+      }
+
+      // phone validation
+      if (formElementIdentifier === "phone") {
+        if (!Validation.phoneNumber(updateOrderForm[formElementIdentifier].value)){
+          updateOrderForm[formElementIdentifier].isValid = false;
+          validationError = true;
+          this.setState({
+            errorTitle: "Phone is invalid",
+            showErrorModal: true,
+            errorMessage: "Please enter your US phone number for us to contact you."
+          });
+        }
+      }
+
+      // pickuptime validation
+      if (formElementIdentifier === "pickup_time") {
+        if (!Validation.pickupTime(updateOrderForm[formElementIdentifier].value)){
+          updateOrderForm[formElementIdentifier].isValid = false;
+          validationError = true;
+          this.setState({
+            errorTitle: "Pickup time is invalid",
+            showErrorModal: true,
+            errorMessage: "Pickup time is available from 11:00 to 18:30."
+          });
+        }
+        if (!Validation.pickupTimeFormat(updateOrderForm[formElementIdentifier].value)){
+          updateOrderForm[formElementIdentifier].isValid = false;
+          validationError = true;
+          this.setState({
+            errorTitle: "Pickup time is invalid",
+            showErrorModal: true,
+            errorMessage: "Pleaase format pickup time as 11:00 to 18:30."
+          });
+        }
+      }
+
       // check if order is less than 5 date
       if (formElementIdentifier === "pickup_date") {
+        if (!Validation.pickupTimeThreeDash(updateOrderForm[formElementIdentifier].value)){
+          updateOrderForm[formElementIdentifier].isValid = false;
+          validationError = true;
+          this.setState({
+            errorTitle: "Date is invalid",
+            showErrorModal: true,
+            errorMessage: "Please format date as year-month-date."
+          });
+        }
+        if (!Validation.year4Month2Date2(updateOrderForm[formElementIdentifier].value)){
+          updateOrderForm[formElementIdentifier].isValid = false;
+          validationError = true;
+          this.setState({
+            errorTitle: "Date is invalid",
+            showErrorModal: true,
+            errorMessage: "Please enter 4 digits year, 2 digits month, 2 digits date as 2019-09-02."
+          });
+        }
+
         let submitedDate = new Date(updateOrderForm[formElementIdentifier].value);
         let minDate = new Date(minOrderDate());
         let maxDate = new Date(maxOrderDate());
@@ -442,7 +511,8 @@ class OrderData extends Component {
         if (submitedDate.getDay() === 6) {
           updateOrderForm[formElementIdentifier].isValid = false;
           validationError = true;
-          let date = submitedDate.getDate();
+          // TODO: one day off because timezone issue. We should find a better way to do it.
+          let date = submitedDate.getDate() + 1;
           let month = submitedDate.getMonth() + 1;
           let year = submitedDate.getFullYear();
           this.setState({
