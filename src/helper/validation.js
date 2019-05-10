@@ -78,7 +78,7 @@ class Validation {
         if (!this.pickupTimeFormat(value)){
             return false;
         }
-        const openTime = 1100;
+        const openTime = 1200;
         const closeTime = 1830;
         let split = value.split(":");
         value = split.join("");
