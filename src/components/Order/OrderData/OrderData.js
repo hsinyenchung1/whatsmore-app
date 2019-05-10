@@ -470,7 +470,7 @@ class OrderData extends Component {
           this.setState({
             errorTitle: "Pickup time is invalid",
             showErrorModal: true,
-            errorMessage: "Pleaase format pickup time as 11:00 to 18:30."
+            errorMessage: "Pleaase format pickup time as 12:00 to 18:30."
           });
         }
       }
