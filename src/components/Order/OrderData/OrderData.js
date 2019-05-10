@@ -461,7 +461,7 @@ class OrderData extends Component {
           this.setState({
             errorTitle: "Pickup time is invalid",
             showErrorModal: true,
-            errorMessage: "Pickup time is available from 11:00 to 18:30."
+            errorMessage: "Pickup time is available from 12:00 to 18:30."
           });
         }
         if (!Validation.pickupTimeFormat(updateOrderForm[formElementIdentifier].value)){
