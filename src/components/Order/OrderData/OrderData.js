@@ -406,7 +406,7 @@ class OrderData extends Component {
       ...this.state.orderForm
     }
 
-    if(this.state.total_amount === 0){
+    if(this.state.total_amount === 0 && this.state.current_cake_limitation.date_amount_limit >= 200){
       validationError = true;
       this.setState({
         errorTitle: "Please select a cake",
@@ -522,6 +522,16 @@ class OrderData extends Component {
           });
         }
       }
+    }
+
+    // TODO: quick fix find a better way to do the validation order
+    if (this.state.current_cake_limitation.date_amount_limit < 200){
+      validationError = true;
+      this.setState({
+        errorTitle: "Pleace select another day",
+        showErrorModal: true,
+        errorMessage: "We are fully booked. Pleace select another day."
+      });
     }
 
     if (validationError) {
