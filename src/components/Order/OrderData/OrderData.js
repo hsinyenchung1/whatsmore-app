@@ -15,7 +15,7 @@ var minOrderDate = function () {
   }
 
   var date_obj = new Date();
-  date_obj.setDate(date_obj.getDate() + 5);
+  date_obj.setDate(date_obj.getDate() + 3);
   var year = date_obj.getFullYear();
   var month = formattedNumber(date_obj.getMonth() + 1);
   var date = formattedNumber(date_obj.getDate());
