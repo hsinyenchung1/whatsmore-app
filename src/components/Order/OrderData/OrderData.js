@@ -3,6 +3,7 @@ import Input from '../../UI/Input/Input';
 import axios from 'axios';
 import UIButton from '../../UI/Button/UIButton';
 import CakeMenuDisplay from './CakeMenuDisplay/CakeMenuDisplay';
+import DesginCake from './DesignCake/DesignCake';
 import Spinner from '../../UI/Spinner/Spinner';
 import classes from './OrderData.scss';
 import Modal from 'react-bootstrap/lib/Modal'
@@ -674,7 +675,7 @@ class OrderData extends Component {
                 cake_index_obj={this.state.cake_index_obj}
                 updateCakeAmountChangedHandler={this.updateCakeAmountChangedHandler} />
           )}
-          <div className={classes["DesginCake"]}>Please contact us if you would like to order a designer cake.</div>
+          <DesginCake />
           <form className={classes['Form']} onSubmit={this.orderHandler} formNoValidate>
             {formElementSArray.map((formElement) => (
               <div className={classes[formElement.id]} id={formElement.id} key={formElement.id}>

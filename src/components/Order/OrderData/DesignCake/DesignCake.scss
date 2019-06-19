@@ -1,0 +1,66 @@
+.Title {
+    position: absolute;
+    right: 50%;
+    top: -12px;
+    margin-right: -84px;
+    width: 168px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: white;
+}
+
+.desgin-cake {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 40px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    position: relative;
+    text-align: center;
+}
+
+.title {
+    padding-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.flavors {
+    margin: auto;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.flavors div {
+    padding-bottom: 20px;
+}
+
+.prices {
+    max-width: 280px;
+    margin: auto;
+    text-align: left;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.prices div {
+    padding-bottom: 20px;
+}
+
+.description {
+    margin: auto;
+    text-align: justify;
+    max-width: 440px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .prices {
+        text-align: center;
+    }
+}
