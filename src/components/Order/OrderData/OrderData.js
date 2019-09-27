@@ -43,7 +43,7 @@ var formatTitle = (category) => {
   for (let w in words) {
     words[w] = words[w][0].toUpperCase() + words[w].substring(1, words[w].length);
   }
-  return words.join(' ');;
+  return words.join(' ');
 }
 
 var toUpperCaseFirstWord = (name) => {
@@ -51,7 +51,7 @@ var toUpperCaseFirstWord = (name) => {
   for (let w in words) {
     words[w] = words[w][0].toUpperCase() + words[w].substring(1, words[w].length);
   }
-  return words.join(' ');;
+  return words.join(' ');
 }
 class OrderData extends Component {
   constructor(props, context) {
@@ -569,6 +569,22 @@ class OrderData extends Component {
     }, 500)
   }
 
+  stopShowMenu() {
+    let date = new Date(this.state.current_cake_limitation.current_date);
+    let stopDate = new Date ("10-06-2019");
+    return date.getTime() >= stopDate.getTime();
+  }
+
+  renderStopShowMenuMessage() {
+    let divStyle = {
+      color: '#f3cc50',
+      padding: '25px 0px'
+    }
+    return (
+      this.stopShowMenu() ? <h2 style={ divStyle }>The online order is closed. We're redesigning the menu. We'll be back soon. Please contact us by email whatsmorecake@gmail.com</h2> : <h1>We are fully booked. Pleace select another day.</h1>
+    )
+  }
+
   render() {
 
     const formElementSArray = [];
@@ -669,8 +685,8 @@ class OrderData extends Component {
       <div>
         <Spinner>
           {(
-            this.state.current_cake_limitation.date_amount_limit < 200 ?
-              <h1>We are fully booked. Pleace select another day.</h1> :
+            this.state.current_cake_limitation.date_amount_limit < 200 || this.stopShowMenu(this.state.current_cake_limitation.current_date)?
+               this.renderStopShowMenuMessage() :
               <CakeMenuDisplay
                 cake_index_obj={this.state.cake_index_obj}
                 updateCakeAmountChangedHandler={this.updateCakeAmountChangedHandler} />
