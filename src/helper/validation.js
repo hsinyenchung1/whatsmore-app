@@ -88,5 +88,11 @@ class Validation {
         }
         return false;
     }
+
+    pickupDateStopAtOct(value) {
+        let date = new Date(value);
+        let stopDate = new Date ("2019-10-06");
+        return date.getTime() >= stopDate.getTime();
+    }
 }
 export default new Validation;

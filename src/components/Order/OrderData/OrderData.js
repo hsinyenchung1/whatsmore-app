@@ -471,7 +471,7 @@ class OrderData extends Component {
           this.setState({
             errorTitle: "Pickup time is invalid",
             showErrorModal: true,
-            errorMessage: "Pleaase format pickup time as 12:00 to 18:30."
+            errorMessage: "Please format pickup time as 12:00 to 18:30."
           });
         }
       }
@@ -522,6 +522,15 @@ class OrderData extends Component {
             errorMessage: "Sorry, We close on Sunday. " + year + "-" + month + "-" + date
           });
         }
+        if (Validation.pickupDateStopAtOct(updateOrderForm[formElementIdentifier].value)){
+          updateOrderForm[formElementIdentifier].isValid = false;
+          validationError = true;
+          this.setState({
+            errorTitle: "Pickup time is invalid",
+            showErrorModal: true,
+            errorMessage: "The online order is closed after 10/06/2019. We're redesigning the menu. We'll be back soon. Please contact us by email whatsmorecake@gmail.com."
+          });
+        }
       }
     }
 
@@ -569,19 +578,13 @@ class OrderData extends Component {
     }, 500)
   }
 
-  stopShowMenu() {
-    let date = new Date(this.state.current_cake_limitation.current_date);
-    let stopDate = new Date ("10-06-2019");
-    return date.getTime() >= stopDate.getTime();
-  }
-
   renderStopShowMenuMessage() {
     let divStyle = {
       color: '#f3cc50',
       padding: '25px 0px'
     }
     return (
-      this.stopShowMenu() ? <h2 style={ divStyle }>The online order is closed. We're redesigning the menu. We'll be back soon. Please contact us by email whatsmorecake@gmail.com</h2> : <h1>We are fully booked. Pleace select another day.</h1>
+      Validation.pickupDateStopAtOct(this.state.current_cake_limitation.current_date) ? <h2 style={ divStyle }>The online order is closed. We're redesigning the menu. We'll be back soon. Please contact us by email whatsmorecake@gmail.com</h2> : <h1>We are fully booked. Pleace select another day.</h1>
     )
   }
 
@@ -685,8 +688,9 @@ class OrderData extends Component {
       <div>
         <Spinner>
           {(
-            this.state.current_cake_limitation.date_amount_limit < 200 || this.stopShowMenu(this.state.current_cake_limitation.current_date)?
-               this.renderStopShowMenuMessage() :
+            this.state.current_cake_limitation.date_amount_limit < 200 ||
+            Validation.pickupDateStopAtOct(this.state.current_cake_limitation.current_date) ? 
+              this.renderStopShowMenuMessage() :
               <CakeMenuDisplay
                 cake_index_obj={this.state.cake_index_obj}
                 updateCakeAmountChangedHandler={this.updateCakeAmountChangedHandler} />
